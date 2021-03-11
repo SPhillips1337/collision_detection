@@ -3,13 +3,23 @@
 // By Stephen Phillips
 // 10/03/21
 
-// set shapes and co-rdinates as an array
+// set shapes and co-rdinates as an array (we are assuming all shapes will not have negative co-ordinates
 // shape = bottom_left, top_left, top_right, bottom_right, shape cordinates are in format of x,y
 $shapes[] = ['bottom_left'=>[0,3],'top_left'=>[0,5],'bottom_right'=>[3,3],'top_right'=>[3,5]];
 $shapes[] = ['bottom_left'=>[2,6],'top_left'=>[2,7],'bottom_right'=>[4,6],'top_right'=>[4,7]];
-
+  echo "<h2>Shape Collision Detection</h2>";
+  echo "<p>This script finds out if 2 different shapes intersect given the cordinates of the corners of the shape</p>";
+  echo "<p>Shapes are defined as per below</p>";
 // calculate shape width (for my own reference - this can be removed as not needed)
 foreach($shapes as $key=>$shape) {
+  echo "<strong>Shape $key</strong><br>";
+
+echo "Cordinates - <br>".
+  "bottom_left: ".$shape['bottom_left'][0].",".$shape['bottom_left'][1]." - ".
+  "top_left: ".$shape['top_left'][0].",".$shape['top_left'][1]." - ".
+  "bottom_right: ".$shape['bottom_right'][0].",".$shape['bottom_right'][1]." - ".
+  "top_right: ".$shape['top_right'][0].",".$shape['top_right'][1]."<br>";
+
 	// for simplicity we are considering all shapes square with equal co-ordinates for height and width
 	$width = ($shape['bottom_right'][0] - $shape['bottom_left'][0])+1;	
 	echo "Width: $width<br>";
@@ -22,8 +32,6 @@ foreach($shapes as $key=>$shape) {
 // check to see shapes collide
 // let's start by check to see if the bottom left co-rdinate of our first shape is higher or lower than the second
 
-echo $shapes[0]['bottom_left'][0]."<br>";
-echo $shapes[1]['bottom_left'][0]."<br>";
 
 if($shapes[0]['bottom_left'][0]<$shapes[1]['bottom_left'][0]){
     
@@ -107,13 +115,13 @@ else{
 }
 
 if($x_collision&&$y_collision){
-    echo "Collision<br>";
+    echo "<br><strong>Collision</strong><br>";
   }
   else{
     // collision
-    echo "No Collision<br>";
+    echo "<br><strong>No Collision</strong><br>";
 }
 
-echo "<br><hr><pre>";
+echo "<br><hr><h3>Debug</h3><pre>";
 var_dump($shapes);
 echo "</pre>";
